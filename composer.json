@@ -1,0 +1,20 @@
+{
+    "name": "mangati/paginator-bundle",
+    "description": "Symfony4 paginator bundle",
+    "type": "library",
+    "require": {
+        "pagerfanta/pagerfanta": "^2.1",
+        "symfony/routing": "^4.2",
+        "symfony/http-foundation": "^4.2"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Rogério Lino",
+            "email": "rogeriolino@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": { "Mangati\\PaginatorBundle\\": "" }
+    }
+}
