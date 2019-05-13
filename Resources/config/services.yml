@@ -17,9 +17,9 @@ services:
 
     # controllers are imported separately to make sure they
     # have the tag that allows actions to type-hint services
-    Mangati\PaginatorBundle\Controller\:
-        resource: '../../Controller'
-        tags: ['controller.service_arguments']
+    #Mangati\PaginatorBundle\Controller\:
+    #    resource: '../../Controller'
+    #    tags: ['controller.service_arguments']
 
     Mangati\PaginatorBundle\PaginatorFactory:
         public: true
