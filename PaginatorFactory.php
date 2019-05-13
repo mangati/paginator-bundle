@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Service;
+namespace Mangati\PaginatorBundle;
 
-use App\Helper\Paginator;
 use Doctrine\ORM\Query;
+use Mangati\PaginatorBundle\Helper\Paginator;
 use Pagerfanta\Adapter\DoctrineORMAdapter;
 use Pagerfanta\Pagerfanta;
 use Pagerfanta\View\TwitterBootstrap4View;
