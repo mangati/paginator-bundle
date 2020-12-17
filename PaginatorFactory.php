@@ -3,8 +3,9 @@
 namespace Mangati\PaginatorBundle;
 
 use Doctrine\ORM\Query;
+use Mangati\PaginatorBundle\Exception\PagerfantaNotFoundException;
 use Mangati\PaginatorBundle\Helper\Paginator;
-use Pagerfanta\Adapter\DoctrineORMAdapter;
+use Pagerfanta\Doctrine\ORM\QueryAdapter;
 use Pagerfanta\Pagerfanta;
 use Pagerfanta\View\TwitterBootstrap4View;
 use Symfony\Component\HttpFoundation\Request;
@@ -42,39 +43,42 @@ class PaginatorFactory
         $this->router = $router;
         
         if (!class_exists('\Pagerfanta\Pagerfanta')) {
-            throw new \Exception('Para usar o paginator precisa instalar o Pagerfanta: composer req pagerfanta/pagerfanta.');
+            throw new PagerfantaNotFoundException('Pagerfanta not found, please add pagerfanta to project: composer req pagerfanta/pagerfanta.');
         }
     }
 
     /**
      * Quantidade de itens por página (padrão 10)
-     * @return int
+     * @return self
      */
     public function withPageLength(int $pageLength)
     {
         $this->pageLength = $pageLength;
+
         return $this;
     }
 
     /**
      * Nome do parâmetro da requisição (padrão: 'page')
      * @param string $pageParam
-     * @return $this
+     * @return self
      */
     public function withPageParam(string $pageParam)
     {
         $this->pageParam = $pageParam;
+
         return $this;
     }
     
     /**
      * Outros parâmetros para serem adicionados na paginação (exemplo: campo de busca).
      * @param array $params
-     * @return $this
+     * @return self
      */
     public function withExtraParams(array $params)
     {
         $this->extraParams = $params;
+
         return $this;
     }
     
@@ -101,8 +105,8 @@ class PaginatorFactory
      */
     public function create(Request $request, Query $query, string $routeName): Paginator
     {
-        $router     = $this->router;
-        $pageParam  = $this->pageParam;
+        $router = $this->router;
+        $pageParam = $this->pageParam;
         $pageLength = $this->pageLength;
         $parameters = [];
         
@@ -115,7 +119,7 @@ class PaginatorFactory
             return $router->generate($routeName, $params);
         };
         
-        $adapter    = new DoctrineORMAdapter($query);
+        $adapter    = new QueryAdapter($query);
         $pagerfanta = new Pagerfanta($adapter);
         $view       = new TwitterBootstrap4View();
         $options    = [

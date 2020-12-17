@@ -1,6 +1,6 @@
 # Paginator Bundle
 
-Symfony 4 paginator bundle.
+Symfony 4+ paginator bundle.
 
 
 ## Usage

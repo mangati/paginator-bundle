@@ -4,8 +4,10 @@
     "type": "library",
     "require": {
         "pagerfanta/pagerfanta": "^2.1",
-        "symfony/routing": "^4.2",
-        "symfony/http-foundation": "^4.2"
+        "symfony/routing": "^4.2|^5.0",
+        "symfony/http-foundation": "^4.2|^5.0",
+        "doctrine/orm": "^2.5",
+        "pagerfanta/doctrine-orm-adapter": "^2.5"
     },
     "license": "MIT",
     "authors": [
